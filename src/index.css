@@ -1,0 +1,745 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme {
+  --color-forest: #24543D;
+  --color-forest-deep: #173D31;
+  --color-blue-dark: #203D40;
+  --color-ivory: #F7F6ED;
+  --color-sage: #DDEBD5;
+  --color-accent-yellow: #FFD15C;
+  --color-accent-coral: #F59562;
+  --font-sans: "Nunito", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-handwriting: "Caveat", cursive;
+}
+
+:root {
+  --primary-forest: #24543D;
+  --primary-forest-deep: #173D31;
+  --primary-blue-dark: #203D40;
+  --primary-ivory: #F7F6ED;
+  --primary-sage: #DDEBD5;
+  --accent-yellow: #FFD15C;
+  --accent-coral: #F59562;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  background-color: var(--primary-ivory);
+  color: var(--primary-blue-dark);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==============================================================
+   GLOBAL INTERACTIVE ELEMENT CURSORS
+   ============================================================== */
+button,
+[role="button"],
+a,
+select,
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"],
+label[for] {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+textarea {
+  cursor: text;
+}
+
+.font-caveat {
+  font-family: var(--font-handwriting);
+}
+
+/* ==============================================================
+   PURE CSS ICONS (STRICTLY NO SVG, NO LUCIDE, NO EMOJI)
+   ============================================================== */
+
+/* Paw Icon - Main pad + 4 toe dots */
+.css-paw {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 20px;
+}
+.css-paw-pad {
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 16px;
+  height: 12px;
+  background-color: currentColor;
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+}
+.css-paw-toe {
+  position: absolute;
+  width: 5px;
+  height: 7px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+.css-paw-t1 { top: 0px; left: 0px; transform: rotate(-25deg); }
+.css-paw-t2 { top: -2px; left: 5px; transform: rotate(-8deg); }
+.css-paw-t3 { top: -2px; right: 5px; transform: rotate(8deg); }
+.css-paw-t4 { top: 0px; right: 0px; transform: rotate(25deg); }
+
+/* Small paw for badges */
+.css-paw-sm {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 14px;
+}
+.css-paw-sm .css-paw-pad {
+  width: 12px;
+  height: 9px;
+  left: 2px;
+}
+.css-paw-sm .css-paw-toe {
+  width: 3.5px;
+  height: 5px;
+}
+.css-paw-sm .css-paw-t1 { top: 0px; left: 0px; }
+.css-paw-sm .css-paw-t2 { top: -2px; left: 3.5px; }
+.css-paw-sm .css-paw-t3 { top: -2px; right: 3.5px; }
+.css-paw-sm .css-paw-t4 { top: 0px; right: 0px; }
+
+/* Search Icon */
+.css-icon-search {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+.css-icon-search::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.css-icon-search::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 6px;
+  height: 2px;
+  background-color: currentColor;
+  transform: rotate(45deg);
+  transform-origin: center right;
+  border-radius: 1px;
+}
+
+/* User / Account Icon */
+.css-icon-user {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+.css-icon-user::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.css-icon-user::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  left: 2px;
+  width: 14px;
+  height: 6px;
+  border: 2px solid currentColor;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+}
+
+/* Cart / Bag Icon */
+.css-icon-cart {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+.css-icon-cart::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 2px;
+  width: 14px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-radius: 2px 2px 4px 4px;
+}
+.css-icon-cart::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  width: 8px;
+  height: 6px;
+  border: 2px solid currentColor;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Plus Icon for Add to Cart */
+.css-icon-plus {
+  position: relative;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+}
+.css-icon-plus::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 1px;
+  width: 12px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+.css-icon-plus::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 6px;
+  width: 2px;
+  height: 12px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+
+/* Arrow Right */
+.css-arrow-right {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+/* Close Icon (X) */
+.css-icon-close {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+.css-icon-close::before,
+.css-icon-close::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+.css-icon-close::before { transform: rotate(45deg); }
+.css-icon-close::after { transform: rotate(-45deg); }
+
+/* Heart Character / CSS Shape */
+.css-heart {
+  position: relative;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  background-color: currentColor;
+  transform: rotate(-45deg);
+  margin-top: 3px;
+}
+.css-heart::before,
+.css-heart::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+.css-heart::before {
+  top: -5.5px;
+  left: 0;
+}
+.css-heart::after {
+  top: 0;
+  right: -5.5px;
+}
+
+/* Checkmark */
+.css-checkmark {
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  border-bottom: 2.5px solid currentColor;
+  border-right: 2.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-bottom: 3px;
+}
+
+/* Category Symbols */
+/* 1. Dog Food: Bowl with food */
+.css-cat-dogfood {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cat-dogfood::before {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 2px;
+  width: 24px;
+  height: 11px;
+  border: 2.2px solid currentColor;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+}
+.css-cat-dogfood::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 7px;
+  width: 14px;
+  height: 4px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+/* 2. Cat Food: Fish silhouette */
+.css-cat-catfood {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cat-catfood::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  width: 18px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+.css-cat-catfood::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* 3. Treats & Snacks: Bone shape */
+.css-cat-treats {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-bone-bar {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  width: 16px;
+  height: 4px;
+  background-color: currentColor;
+  border-radius: 2px;
+}
+.css-bone-node {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+/* 4. Toys: Ball with curve */
+.css-cat-toys {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cat-toys::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border: 2.2px solid currentColor;
+  border-radius: 50%;
+}
+.css-cat-toys::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 14px;
+  height: 14px;
+  border: 2px dashed currentColor;
+  border-radius: 50%;
+}
+
+/* 5. Grooming Supplies: Comb / Brush */
+.css-cat-grooming {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cat-grooming::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  width: 20px;
+  height: 8px;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+.css-cat-grooming::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 12px;
+  width: 4px;
+  height: 10px;
+  background-color: currentColor;
+  border-radius: 2px;
+}
+
+/* 6. Accessories: Collar with bell */
+.css-cat-accessories {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cat-accessories::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 22px;
+  height: 14px;
+  border: 2.2px solid currentColor;
+  border-radius: 12px 12px 6px 6px;
+}
+.css-cat-accessories::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 11px;
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+/* 7. Vet Services: Medical Cross inside circle */
+.css-cat-vetservices {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.css-cross-h {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  width: 16px;
+  height: 4px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+.css-cross-v {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  width: 4px;
+  height: 16px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+
+/* Benefits Icons */
+/* Shield */
+.css-icon-shield {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 26px;
+}
+.css-icon-shield::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 2px 2px 10px 10px;
+}
+
+/* Stethoscope / Vet Heart */
+.css-icon-vet {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+.css-icon-vet::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-top: none;
+  border-radius: 0 0 9px 9px;
+}
+.css-icon-vet::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+  width: 4px;
+  height: 7px;
+  background-color: currentColor;
+  border-radius: 2px;
+}
+
+/* Fast Delivery Truck */
+.css-icon-truck {
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 20px;
+}
+.css-truck-body {
+  position: absolute;
+  top: 2px;
+  left: 1px;
+  width: 16px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+}
+.css-truck-cab {
+  position: absolute;
+  top: 5px;
+  right: 1px;
+  width: 8px;
+  height: 9px;
+  border: 2px solid currentColor;
+  border-left: none;
+  border-radius: 0 3px 2px 0;
+}
+.css-truck-wheel {
+  position: absolute;
+  bottom: 0px;
+  width: 5px;
+  height: 5px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+.css-truck-w1 { left: 4px; }
+.css-truck-w2 { right: 4px; }
+
+/* Pet Wellness Plan: Leaf/Heart */
+.css-icon-leaf {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+}
+.css-icon-leaf::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 0 16px 0 16px;
+}
+.css-icon-leaf::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 12px;
+  height: 12px;
+  border-top: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* Star rating with CSS */
+.css-star-filled {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #FFD15C;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.css-star-empty {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #E2E8F0;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Filter icon (sliders) */
+.css-icon-filter {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 14px;
+}
+.css-icon-filter::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+  background-color: currentColor;
+  box-shadow: 0 4px 0 0 currentColor, 0 8px 0 0 currentColor;
+}
+.css-icon-filter::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  width: 4px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 2px;
+  box-shadow: 6px 4px 0 0 currentColor, -1px 8px 0 0 currentColor;
+}
+
+/* Chevrons */
+.css-chevron-down {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+.css-chevron-up {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: 2px;
+}
+
+/* Quick View Eye icon */
+.css-icon-eye {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 10px;
+  border: 1.8px solid currentColor;
+  border-radius: 10px / 6px;
+}
+.css-icon-eye::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 4px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+/* Organic footer top curve */
+.footer-curved-top {
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+@media (min-width: 768px) {
+  .footer-curved-top {
+    border-top-left-radius: 64px;
+    border-top-right-radius: 64px;
+  }
+}
+
+/* Organic blob shape for hero right animal background */
+.hero-sage-shape {
+  background-color: var(--primary-sage);
+  border-radius: 48% 52% 58% 42% / 54% 46% 54% 46%;
+  transition: all 0.5s ease;
+}
+
+/* Organic blob shape for vet section right image */
+.vet-image-frame {
+  border-radius: 36px 36px 80px 36px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -15px rgba(23, 61, 49, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F6ED;
+}
+::-webkit-scrollbar-thumb {
+  background: #24543D33;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #24543D66;
+}

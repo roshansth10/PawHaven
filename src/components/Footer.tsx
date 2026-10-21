@@ -127,17 +127,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Brand Info (Span 2 on mobile & tablet) */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 space-y-3">
-            <div
-              onClick={() => handleNav('home')}
+            <a
+              href="https://dxcreativestudio.vercel.app/"
               className="cursor-pointer inline-block group"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleNav('home');
-                }
-              }}
-              aria-label="PawHaven Home"
+              aria-label="DX Creative Studio"
             >
               <img
                 src="/images/logofinal.png"
@@ -146,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 style={{ filter: 'brightness(0) invert(1)' }}
                 draggable={false}
               />
-            </div>
+            </a>
             <p className="text-xs text-[#DDEBD5]/70 max-w-sm leading-relaxed">
               Nepal&apos;s premier destination for compassionate veterinary healthcare and trusted pet nutrition. Serving pet families across Kathmandu, Lalitpur, and beyond.
             </p>

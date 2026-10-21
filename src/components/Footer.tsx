@@ -290,16 +290,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span className="text-[11px] font-medium tracking-wide text-[#DDEBD5]/75">
               Designed &amp; Developed by
             </span>
-            <img
-              src="/images/logo white.png"
-              alt="Designed &amp; Developed by"
-              className="h-5 sm:h-6 md:h-7 w-auto object-contain hover:opacity-100 opacity-90 transition-opacity"
-              onError={(e) => {
-                // Safeguard against spaces in URL encoding in older webviews
-                (e.target as HTMLImageElement).src = '/images/logo-white.png';
-              }}
-              draggable={false}
-            />
+            <a
+              href="https://dxcreativestudio.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="DX Creative Studio website"
+              className="inline-flex items-center group transition-transform duration-200 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD15C] rounded"
+            >
+              <img
+                src="/images/logo white.png"
+                alt="DX Creative Studio"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+                onError={(e) => {
+                  // Safeguard against spaces in URL encoding in older webviews
+                  (e.target as HTMLImageElement).src = '/images/logo-white.png';
+                }}
+                draggable={false}
+              />
+            </a>
           </div>
 
         </div>

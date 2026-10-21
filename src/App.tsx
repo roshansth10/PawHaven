@@ -12,6 +12,9 @@ import { VetPage } from './components/vet/VetPage';
 import { AboutPage } from './components/about/AboutPage';
 import { BlogPage } from './components/blog/BlogPage';
 import { ContactPage } from './components/contact/ContactPage';
+import { PrivacyPolicyPage } from './components/legal/PrivacyPolicyPage';
+import { TermsOfServicePage } from './components/legal/TermsOfServicePage';
+import { ClientSupportPage } from './components/support/ClientSupportPage';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { SearchModal } from './components/SearchModal';
@@ -49,6 +52,9 @@ export const App: React.FC = () => {
     if (pathname === '/about' || pathname === '/about-us') return 'about';
     if (pathname === '/blog' || pathname.startsWith('/blog')) return 'blog';
     if (pathname === '/contact' || pathname === '/contact-us') return 'contact';
+    if (pathname === '/privacy' || pathname === '/privacy-policy') return 'privacy';
+    if (pathname === '/terms' || pathname === '/terms-of-service') return 'terms';
+    if (pathname === '/support' || pathname === '/client-support' || pathname === '/help') return 'support';
     return 'home';
   };
 
@@ -87,6 +93,12 @@ export const App: React.FC = () => {
         document.title = 'The PawHaven Journal — Pet Care Advice & Stories';
       } else if (activeSection === 'contact') {
         document.title = 'Contact Us — PawHaven Pet Store & Veterinary Care';
+      } else if (activeSection === 'privacy') {
+        document.title = 'Privacy Policy — PawHaven Pet Store & Veterinary Care';
+      } else if (activeSection === 'terms') {
+        document.title = 'Terms of Service — PawHaven Pet Store & Veterinary Care';
+      } else if (activeSection === 'support') {
+        document.title = 'Client Support & Help Center — PawHaven';
       } else {
         document.title = 'PawHaven — Pet Store & Veterinary Care';
       }
@@ -203,6 +215,9 @@ export const App: React.FC = () => {
       about: '/about',
       blog: '/blog',
       contact: '/contact',
+      privacy: '/privacy-policy',
+      terms: '/terms-of-service',
+      support: '/client-support',
     };
     const targetPath = pathMap[sectionId] || '/';
     window.history.pushState(null, '', targetPath);
@@ -259,6 +274,19 @@ export const App: React.FC = () => {
             onNavigateVet={() => handleNavigate('vet')}
             onNavigateBlog={() => handleNavigate('blog')}
             onNavigateHome={() => handleNavigate('home')}
+          />
+        ) : activeSection === 'privacy' ? (
+          /* Dedicated Complete Privacy Policy Page */
+          <PrivacyPolicyPage onNavigate={handleNavigate} />
+        ) : activeSection === 'terms' ? (
+          /* Dedicated Complete Terms of Service Page */
+          <TermsOfServicePage onNavigate={handleNavigate} />
+        ) : activeSection === 'support' ? (
+          /* Dedicated Complete Client Support & Help Center */
+          <ClientSupportPage
+            onNavigate={handleNavigate}
+            onBookAppointment={handleBookAppointment}
+            showToast={showToast}
           />
         ) : (
           /* Homepage Sections */
